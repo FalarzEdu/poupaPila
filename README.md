@@ -102,7 +102,7 @@ Imagens do diagrama esquemático:
 
 
 
-![schematic_diagram](/home/etu/Desktop/UTFPR/5th-semester/DPDM/poupaPila/images/schematic_diagram.svg)
+![schematic_diagram](https://github.com/FalarzEdu/poupaPila/blob/main/images/schematic_diagram.svg)
 
 ---
 
