@@ -8,13 +8,13 @@
 
 ### 1. [Sobre a aplicação](#Sobre-a-Aplicação)
 
-#### 	1.1 [*Checklist* de Funcionalidades](#Checklist-de-Funcionalidades) 
+#### --- 1.1 [*Checklist* de Funcionalidades](#Checklist-de-Funcionalidades) 
 
 ### 2. [Protótipos de Tela](#Protótipos-de-Tela)
 
-	#### 	2.1 [Link do **Figma**](#Link-do-Figma)
+#### --- 2.1 [Link do **Figma**](#Link-do-Figma)
 
-	#### 	2.2 [Imagens dos Protótipos](#Imagens-dos-Protótipos)
+#### --- 2.2 [Imagens dos Protótipos](#Imagens-dos-Protótipos)
 
 ### 3. [Modelagem do Banco de Dados](#Modelagem-do-Banco-de-Dados)
 
@@ -76,15 +76,15 @@ Os pontos acima compõe o núcleo funcional da aplicação. Outras possíveis im
 
 #### Página inicial
 
-<img src="/home/etu/Desktop/UTFPR/5th-semester/DPDM/poupaPila/images/Home - DM.svg" alt="Home - DM" style="zoom:50%;" />
+<img src="https://github.com/FalarzEdu/poupaPila/blob/main/images/Home%20-%20DM.svg" alt="Home - DM" style="zoom:50%;" />
 
 #### Página de despesas
 
-<img src="/home/etu/Desktop/UTFPR/5th-semester/DPDM/poupaPila/images/Expenses - DM.svg" alt="Expenses - DM" style="zoom:50%;" />
+<img src="https://github.com/FalarzEdu/poupaPila/blob/main/images/Expenses%20-%20DM.svg" alt="Expenses - DM" style="zoom:50%;" />
 
 #### Página de receitas
 
-<img src="/home/etu/Desktop/UTFPR/5th-semester/DPDM/poupaPila/images/Revenues - DM.svg" alt="Revenues - DM" style="zoom:50%;" />
+<img src="https://github.com/FalarzEdu/poupaPila/blob/main/images/Revenues%20-%20DM.svg" alt="Revenues - DM" style="zoom:50%;" />
 
 
 
