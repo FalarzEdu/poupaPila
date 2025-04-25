@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .h1 {
+    @apply text-3xl font-bold-poppins;
+  }
+  .h2 {
+    @apply text-2xl font-semibold-poppins;
+  }
+  .h3 {
+    @apply text-xl font-medium-poppins;
+  }
+  .h4 {
+    @apply text-lg font-medium-poppins;
+  }
+  .paragraph {
+    @apply text-sm font-medium-poppins;
+  }
+  .small {
+    @apply text-xs font-regular-poppins;
+  }
+}
