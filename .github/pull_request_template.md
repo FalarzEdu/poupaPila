@@ -4,8 +4,8 @@ ISSUE #
 
 ## Type
 
-- [] FEATURE
-- [] CHORE
-- [] FIX
-- [] REFACTOR
-- [] STYLE
+- [ ] FEATURE
+- [ ] CHORE
+- [ ] FIX
+- [ ] REFACTOR
+- [ ] STYLE
