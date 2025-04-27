@@ -4,25 +4,25 @@ import { View } from "react-native";
 import React from "react";
 
 import changeThemeStore from "../src/states/ColourTheme";
-import FixedScreen from "../src/components/screen/FixedScreen";
+import FixedScreen from "../src/containers/screen/FixedScreen";
 import MainDisplay from "../src/components/balance/MainDisplay";
 import { useFonts } from "expo-font";
 import SecondaryDisplay from "../src/components/balance/SecondaryDisplay";
 import CardDisplay from "../src/components/balance/CardDisplay/CardDisplay";
 
 export default function home() {
-  // const [fontsLoaded] = useFonts({
-  //   "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
-  //   "Poppins-Bold": require("../assets/fonts/Poppins Bold.ttf"),
-  //   "Poppins-Semibold": require("../assets/fonts/Poppins-SemiBold.ttf"),
-  //   "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
-  // });
+  const [fontsLoaded] = useFonts({
+    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Bold": require("../assets/fonts/Poppins Bold.ttf"),
+    "Poppins-Semibold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+  });
 
   const { theme } = changeThemeStore();
 
   return (
-    <View>
-      <FixedScreen>
+    <FixedScreen>
+      <View className="mt-8">
         <View className="flex flex-row justify-between content-end">
           <SecondaryDisplay
             text="Inicial"
@@ -78,7 +78,7 @@ export default function home() {
             Despesas por categoria
           </Text>
         </View> */}
-      </FixedScreen>
-    </View>
+      </View>
+    </FixedScreen>
   );
 }
