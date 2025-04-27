@@ -14,6 +14,16 @@ const transaction_categories = [
     transaction_id: 3,
     category_id: 3,
   },
+  {
+    id: 4,
+    transaction_id: 4,
+    category_id: 4,
+  },
+  {
+    id: 5,
+    transaction_id: 5,
+    category_id: 4,
+  },
 ];
 
 export default transaction_categories;
