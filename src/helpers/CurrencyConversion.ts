@@ -1,3 +1,8 @@
 export function convert(value: number) {
-  return value.toFixed(2).replace(".", ",");
+  // value.toString().
+  // return value.toFixed(2).replace(".", ",");
+  return value.toLocaleString("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 }
