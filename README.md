@@ -18,6 +18,12 @@
 
 ### 4. [Planejamento de Sprints](#Planejamento-de-Sprints)
 
+### 5. [Atualizações desde o Último Checkpoint](#Atualizações-desde-o-Último-Checkpoint)
+
+#### --- 5.1 [Recursos utilizados](#Recursos-utilizados)
+
+#### --- 5.2 [Métodos reproduzidos da aula "Boas práticas para a criação de componentes reutilizáveis"](#Métodos-reproduzidos-da-aula-"Boas-práticas-para-a-criação-de-componentes reutilizáveis")
+
 ---
 
 ## Sobre a Aplicação
@@ -110,7 +116,7 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 - [ ] Criar a UI para formulário de nova transação.
 - [ ] Salvar a transação no banco de dados.
-- [ ] Exibir lista de transações no app.
+- [x] Exibir lista de transações no app.
 
 **_Story_**: Como usuário, quero marcar se uma transação é uma receita ou despesa.
 
@@ -126,9 +132,9 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 **Tarefas**
 
-- [ ] Construção da UI da página central
-- [ ] Visualização de dados gerais, como saldo atual, saldo no início do mês e projeção de saldo ao final do mês.
-- [ ] Resumo do valor total das receitas e despesas.
+- [x] Construção da UI da página central
+- [x] Visualização de dados gerais, como saldo atual, saldo no início do mês e projeção de saldo ao final do mês.
+- [x] Resumo do valor total das receitas e despesas.
 - [ ] Gráfico para separação das despesas em função das categorias
 
 ### ----------------------------------------------------------------------------
@@ -177,3 +183,60 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 - [ ] Implementar notificação caso o gasto com uma categoria (exceto as categorias "contas fixas" e "saúde") esteja muito maior em comparação a outras (caso a categoria assuma sozinha mais de 1/3 do total).
 - [ ] Implementar notificação caso uma categoria exceda a média dos últimos 3 meses em mais de 25%.
+
+## Atualizações desde o Último Checkpoint
+
+### Recursos utilizados
+
+- A estilização do aplicativo até então (tela _home_, de gastos e receitas) foi feita quase que integralmente com NativeWind.
+
+- Zustand foi utilizado para criar um hook chamado "ColourTheme" cuja função é controlar o tema
+  da aplicação: _dark_ (padrão) e _light_.
+
+### Métodos reproduzidos da aula "Boas práticas para a criação de componentes reutilizáveis"
+
+- Isolamento de componentes repetitivos
+
+Exemplo:
+
+```
+ /src/components/transaction/Transaction.tsx
+```
+
+- Parametrização de componentes
+
+Exemplo:
+
+```
+ /src/components/month_slider/MonthSlider.tsx
+```
+
+- Uso de _mocks_
+
+Mocks para para dados das tabelas:
+
+- transactions
+- categories
+- transaction_categories
+
+- Componentes que recebem filhos
+
+Exemplo:
+
+```
+src/containers/screen/FixedScreen.tsx
+```
+
+- Agrupamento de _exports_ em componentes compostos
+
+Exemplo:
+
+```
+src/components/balance/CardDisplay
+```
+
+Aqui existem 3 componentes.
+
+- _CardDisplay_ declara os _exports_.
+- _Regular_ é o _CardDisplay_ padrão.
+- _WithLink_ é o _CardDisplay_ envolto por um _Link_.
