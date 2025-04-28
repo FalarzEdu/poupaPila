@@ -14,6 +14,11 @@ const categories = [
     description: "Outros",
     colour: "#7B8CDE",
   },
+  {
+    id: 4,
+    description: "Fixos",
+    colour: "#2EC27E",
+  },
 ];
 
 export default categories;
