@@ -46,6 +46,20 @@ export default function expenses() {
             </React.Fragment>
           ))}
       </View>
+
+      <Link className="fixed top-0 w-[64px]" href={"/transactions/newExpense"}>
+        <Ionicons
+          name="add-circle-outline"
+          color={theme.colours.states.success}
+          size={64}
+          className="w-fit"
+        />
+      </Link>
+
+      {/*<View>*/}
+
+      {/*</View>*/}
+
     </FixedScreen>
   );
 }

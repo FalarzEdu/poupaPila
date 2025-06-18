@@ -1,7 +1,7 @@
 import "../public/css/global.css";
 
 import { View } from "react-native";
-import React from "react";
+import React, {useEffect} from "react";
 
 import changeThemeStore from "../src/states/ColourTheme";
 import FixedScreen from "../src/containers/screen/FixedScreen";
@@ -9,8 +9,17 @@ import MainDisplay from "../src/components/balance/MainDisplay";
 import { useFonts } from "expo-font";
 import SecondaryDisplay from "../src/components/balance/SecondaryDisplay";
 import CardDisplay from "../src/components/balance/CardDisplay/CardDisplay";
+import {Route} from "expo-router/build/Route";
+import {Router} from "expo-router/build/rsc/router/client";
+import {ExpoRouter, Redirect, useRouter} from "expo-router";
+import {RouterStore} from "expo-router/build/global-state/router-store";
 
 export default function home() {
+  const router = useRouter();
+
+  // AUTO REDIRECT FOR TESTS
+  return <Redirect href="/transactions/newExpense" />;
+
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins Bold.ttf"),
