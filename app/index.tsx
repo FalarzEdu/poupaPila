@@ -41,7 +41,7 @@ export default function home() {
           <SecondaryDisplay
             text="Previsto"
             value={731.41}
-            dinamicValueColour={true}
+            dynamicValueColour={true}
             icon="exit-outline"
             iconSize={14}
             iconColour={theme.colours.primary.fade}

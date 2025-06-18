@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 interface secondaryDisplayProps {
   text: string;
   value: number;
-  dinamicValueColour?: boolean;
+  dynamicValueColour?: boolean;
   icon?: any;
   iconColour?: string;
   iconSize?: number;
@@ -16,7 +16,7 @@ interface secondaryDisplayProps {
 export default function SecondaryDisplay({
   text,
   value,
-  dinamicValueColour,
+  dynamicValueColour,
   icon,
   iconColour,
   iconSize,
@@ -48,7 +48,7 @@ export default function SecondaryDisplay({
         <Text className="m-0 p-0 paragraph text-alternative">R$ </Text>
         <Text
           className={`m-0 p-0 h3 h-full ${
-            dinamicValueColour ? valueColourChange() : "text-normal"
+            dynamicValueColour ? valueColourChange() : "text-normal"
           }`}
         >
           {convert(value)}
