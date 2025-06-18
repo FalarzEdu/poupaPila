@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import changeThemeStore from "../../states/ColourTheme";
-import { convert } from "../../helpers/CurrencyConversion";
-import Label from "../label/Label";
+import changeThemeStore from "@states/ColourTheme";
+import { convert } from "@helpers/CurrencyConversion";
+import Label from "@components/label/Label";
 
 interface TransactionProps {
   paid: boolean;

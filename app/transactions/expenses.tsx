@@ -1,12 +1,18 @@
 import { Text, View } from "react-native";
 import React from "react";
-import FixedScreen from "../../src/containers/screen/FixedScreen";
-import MonthSlider from "../../src/components/month_slider/MonthSlider";
-import Transaction from "../../src/components/transaction/Transaction";
-import transactions from "../../src/mocks/transactions";
-import { convert } from "../../src/helpers/CurrencyConversion";
+import FixedScreen from "@containers/screen/FixedScreen";
+import MonthSlider from "@components/month_slider/MonthSlider";
+import Transaction from "@components/transaction/Transaction";
+import transactions from "@mocks/transactions";
+import changeThemeStore from "@states/ColourTheme";
+import { convert } from "@helpers/CurrencyConversion";
+import {Ionicons} from "@expo/vector-icons";
+import {Link} from "expo-router";
 
 export default function expenses() {
+
+  const { theme } = changeThemeStore();
+
   return (
     <FixedScreen>
       <View className="my-4">
