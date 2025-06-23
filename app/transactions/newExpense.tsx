@@ -24,6 +24,8 @@ export default function newExpense() {
     console.log(paid)
   }
 
+  const options = [ {id: 1, description: "aaa", colour: "a"}, {id: 2, description: "bbb", colour: "bbb"} ];
+
   return (
     <FixedFullScreen>
       <View>
@@ -34,7 +36,7 @@ export default function newExpense() {
 
         <NewTransactionRow.Text icon={"reload"} placeholder={"Parcelas"} onChange={setInstallments} />
 
-        <NewTransactionRow.Select icon={"extension-puzzle-outline"} placeholder={"Categoria"} />
+        <NewTransactionRow.Select icon={"extension-puzzle-outline"} placeholder={"Categoria"} options={options} />
 
         <NewTransactionRow.Date icon={"calendar-outline"} placeholder={"Data de Vencimento"} onChange={setDueDate} />
 
