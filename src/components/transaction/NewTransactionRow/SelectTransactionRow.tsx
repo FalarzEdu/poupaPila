@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { NewTransactionRowProps } from "@components/transaction/NewTransactionRow/NewTransactionRow";
 
 interface SelectTransactionRowProps extends NewTransactionRowProps {
-  options: Array<{ id: string | number; description: string }>;
+  options: Array<any>;
 }
 
 export default function SelectTransactionRow({ ...props }: SelectTransactionRowProps) {

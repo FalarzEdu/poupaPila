@@ -25,6 +25,11 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "assets": ["./assets/fonts/"]
+    "assets": [
+      "./assets/fonts/"
+    ],
+    "plugins": [
+      "expo-sqlite"
+    ]
   }
 }
