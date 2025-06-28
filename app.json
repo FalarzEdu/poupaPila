@@ -19,12 +19,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.falarzedu.PoupaPila"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "assets": ["./assets/fonts/"]
+    "assets": [
+      "./assets/fonts/"
+    ],
+    "plugins": [
+      "expo-sqlite",
+      "expo-router"
+    ]
   }
 }

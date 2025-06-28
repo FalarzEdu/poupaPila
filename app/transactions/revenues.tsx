@@ -5,8 +5,14 @@ import Transaction from "../../src/components/transaction/Transaction";
 import MonthSlider from "../../src/components/month_slider/MonthSlider";
 import FixedScreen from "../../src/containers/screen/FixedScreen";
 import { convert } from "../../src/helpers/CurrencyConversion";
+import {Link} from "expo-router";
+import {Ionicons} from "@expo/vector-icons";
+import changeThemeStore from "@states/ColourTheme";
 
 export default function revenues() {
+
+  const { theme } = changeThemeStore();
+
   return (
     <FixedScreen>
       <View className="my-4">
@@ -40,6 +46,15 @@ export default function revenues() {
             </React.Fragment>
           ))}
       </View>
+
+      <Link className="fixed top-0 w-[64px]" href={"/transactions/newRevenue"}>
+        <Ionicons
+          name="add-circle-outline"
+          color={theme.colours.states.success}
+          size={64}
+          className="w-fit"
+        />
+      </Link>
     </FixedScreen>
   );
 }
