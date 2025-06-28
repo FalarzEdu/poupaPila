@@ -48,9 +48,9 @@ Os pontos acima compõe o núcleo funcional da aplicação. Outras possíveis im
 
 #### Primárias
 
-- [ ] Registro de transações.
-- [ ] Classificação de transações entre **despesas** e **receitas**.
-- [ ] Separação de transações por categorias.
+- [x] Registro de transações.
+- [x] Classificação de transações entre **despesas** e **receitas**.
+- [x] Separação de transações por categorias.
 - [ ] Gráfico contendo dados de gastos separados por categoria.
 
 #### Secundárias
@@ -114,19 +114,19 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 **Tarefas**
 
-- [ ] Criar a UI para formulário de nova transação.
-- [ ] Salvar a transação no banco de dados.
+- [x] Criar a UI para formulário de nova transação.
+- [x] Salvar a transação no banco de dados.
 - [x] Exibir lista de transações no app.
 
 **_Story_**: Como usuário, quero marcar se uma transação é uma receita ou despesa.
 
-- [ ] Adicionar campo `tipo` à transação (receita/despesa).
-- [ ] Atualizar a UI para permitir escolha entre os dois.
+- [x] Adicionar campo `tipo` à transação (receita/despesa).
+- [x] Atualizar a UI para permitir escolha entre os dois.
 
 **_Story_**: Como usuário, quero classificar transações por categorias para entender meus hábitos de gasto.
 
-- [ ] Criar modelo de categorias.
-- [ ] Associar categoria à transação no formulário.
+- [x] Criar modelo de categorias.
+- [x] Associar categoria à transação no formulário.
 
 **_Story_**: Como usuário, quero possui uma tela central (estilo dashboard) contendo dados gerais sobre minha situação financeira
 
