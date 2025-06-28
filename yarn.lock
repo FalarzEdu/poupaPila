@@ -1142,10 +1142,12 @@
   resolved "https://registry.yarnpkg.com/@expo/sudo-prompt/-/sudo-prompt-9.3.2.tgz#0fd2813402a42988e49145cab220e25bea74b308"
   integrity sha512-HHQigo3rQWKMDzYDLkubN5WQOYXJJE2eNqIQC2axC2iO3mHdwnIR7FgZVvHWtBwAdzBgAP0ECp8KqS8TiMKvgw==
 
-"@expo/vector-icons@^14.0.0":
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-14.1.0.tgz#d3dddad8b6ea60502e0fe5485b86751827606ce4"
-  integrity sha512-7T09UE9h8QDTsUeMGymB4i+iqvtEeaO5VvUjryFB4tugDTG/bkzViWA74hm5pfjjDEhYMXWaX112mcvhccmIwQ==
+"@expo/vector-icons@~14.0.4":
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-14.0.4.tgz#fa9d4351877312badf91a806598b2f0bab16039a"
+  integrity sha512-+yKshcbpDfbV4zoXOgHxCwh7lkE9VVTT5T03OUlBsqfze1PLy6Hi4jp1vSb1GVbY6eskvMIivGVc9SKzIv0oEQ==
+  dependencies:
+    prop-types "^15.8.1"
 
 "@expo/ws-tunnel@^1.0.1":
   version "1.0.6"
@@ -2049,6 +2051,11 @@ big-integer@1.6.x:
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.52.tgz#60a887f3047614a8e1bffe5d7173490a97dc8c85"
   integrity sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==
 
+bignumber.js@^9.0.1:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.3.0.tgz#bdba7e2a4c1a2eba08290e8dcad4f36393c92acd"
+  integrity sha512-EM7aMFTXbptt/wZdMlBv2t8IViwQL+h6SLHosp8Yf0dqJMTnY6iL32opnAB6kAdL0SZPuvcAzFr31o0c/R3/RA==
+
 binary-extensions@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.3.0.tgz#f6e14a97858d327252200242d4ccfe522c445522"
@@ -2912,10 +2919,10 @@ expo-modules-core@2.2.3:
   dependencies:
     invariant "^2.2.4"
 
-expo-router@^4.0.20:
-  version "4.0.20"
-  resolved "https://registry.yarnpkg.com/expo-router/-/expo-router-4.0.20.tgz#1b4d7c9b9fd3c16a5bd145acab6281ae581efdc5"
-  integrity sha512-1+CtvohptOsG/Piejk8uQ9cmM+8ojadFkdeThCn4klZjc0dtFSSHenb8D/0RKuBdp4taBkNaqgEKwYvhVBJyEg==
+expo-router@~4.0.21:
+  version "4.0.21"
+  resolved "https://registry.yarnpkg.com/expo-router/-/expo-router-4.0.21.tgz#191e8e5a4401097261cf54461e621387da6cf910"
+  integrity sha512-z1U9cGZbgL+ZSHp533VMobOqdkUpFBlDXBpd9/JH+Q0wW49is0G2PrJVUYMzdwr30HSUltdO/19W8rRwjfOnFw==
   dependencies:
     "@expo/metro-runtime" "4.0.1"
     "@expo/server" "^0.5.3"
@@ -2941,10 +2948,10 @@ expo-status-bar@^2.0.1:
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-2.0.1.tgz#fc07726346dc30fbb68aadb0d7890b34fba42eee"
   integrity sha512-AkIPX7jWHRPp83UBZ1iXtVvyr0g+DgBVvIXTtlmPtmUsm8Vq9Bb5IGj86PW8osuFlgoTVAg7HI/+Ok7yEYwiRg==
 
-expo@~52.0.46:
-  version "52.0.46"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-52.0.46.tgz#3869b87b585da67406a8216539d12a16d736f16e"
-  integrity sha512-JG89IVZLp7DWzgeiQb+0N43kWOF1DUm3esBvAS9cPFWZsM9x8nDXgbvtREcycDPA6E+yJsSC+086CigeUY6sVA==
+expo@~52.0.47:
+  version "52.0.47"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-52.0.47.tgz#b2a25bdcbd2059094396750e896946d2e2e61753"
+  integrity sha512-Mkvl7Qi2k+V3FdNRUD+yDj8GqU4IiYulLfl36BmSZs8lh/kCYPhTiyBLiEGPfz7d25QKbPWG727ESozbkbvatw==
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/cli" "0.22.26"
@@ -2952,7 +2959,7 @@ expo@~52.0.46:
     "@expo/config-plugins" "~9.0.17"
     "@expo/fingerprint" "0.11.11"
     "@expo/metro-config" "0.19.12"
-    "@expo/vector-icons" "^14.0.0"
+    "@expo/vector-icons" "~14.0.4"
     babel-preset-expo "~12.0.11"
     expo-asset "~11.0.5"
     expo-constants "~17.0.8"
@@ -4901,7 +4908,7 @@ prompts@^2.3.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5029,6 +5036,13 @@ react-native-is-edge-to-edge@^1.1.6:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/react-native-is-edge-to-edge/-/react-native-is-edge-to-edge-1.1.7.tgz#28947688f9fafd584e73a4f935ea9603bd9b1939"
   integrity sha512-EH6i7E8epJGIcu7KpfXYXiV2JFIYITtq+rVS8uEb+92naMRBdxhTuS8Wn2Q7j9sqyO0B+Xbaaf9VdipIAmGW4w==
+
+react-native-mask-text@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/react-native-mask-text/-/react-native-mask-text-0.15.0.tgz#6eba151f91ed29073f2288354dd81d4d102c29b4"
+  integrity sha512-KtE/DKFtf6/Glyt3uFRMa+8/RpgTDJVV9rrkZYbwMiGO3AzvDPsRxp5FoLNJk0NXhRCRn8Frs8Z2S6a+uB2ZdQ==
+  dependencies:
+    bignumber.js "^9.0.1"
 
 react-native-reanimated@3.16.2:
   version "3.16.2"

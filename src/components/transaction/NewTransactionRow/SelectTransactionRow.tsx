@@ -6,6 +6,7 @@ import { NewTransactionRowProps } from "@components/transaction/NewTransactionRo
 
 interface SelectTransactionRowProps extends NewTransactionRowProps {
   options: Array<any>;
+  onChange: (categoryId: number) => void;
 }
 
 export default function SelectTransactionRow({ ...props }: SelectTransactionRowProps) {
@@ -29,6 +30,7 @@ export default function SelectTransactionRow({ ...props }: SelectTransactionRowP
               <TouchableOpacity
                 className="py-5 border-b border-gray-300"
                 onPress={() => {
+                  props.onChange(item.id);
                   setSelected(item.description);
                   setModalVisible(false);
                 }}

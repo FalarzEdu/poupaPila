@@ -56,10 +56,6 @@ export default function expenses() {
         />
       </Link>
 
-      {/*<View>*/}
-
-      {/*</View>*/}
-
     </FixedScreen>
   );
 }

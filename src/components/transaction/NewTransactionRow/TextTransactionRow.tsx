@@ -4,7 +4,7 @@ import changeThemeStore from "@states/ColourTheme";
 import {Ionicons} from "@expo/vector-icons";
 import {NewTransactionRowProps} from "@components/transaction/NewTransactionRow/NewTransactionRow";
 
-interface TextTransactionRowProps extends NewTransactionRowProps {
+export interface TextTransactionRowProps extends NewTransactionRowProps {
   onChange: (text: string) => void
 }
 
@@ -17,11 +17,11 @@ export default function TextTransactionRow({ ...props }: TextTransactionRowProps
           <View>
             <Ionicons name={props.icon} size={26} color={theme.text.colours.alternative} />
           </View>
-          <View>
+          <View className="flex-1">
             <TextInput
               placeholder={props.placeholder}
               placeholderTextColor={theme.text.colours.alternative}
-              className="text-alternative text-lg"
+              className="text-alternative text-lg w-full"
               onChangeText={props.onChange}
             />
           </View>
