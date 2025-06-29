@@ -1,17 +1,31 @@
 import { Text, View } from "react-native";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import FixedScreen from "@containers/screen/FixedScreen";
 import MonthSlider from "@components/month_slider/MonthSlider";
 import Transaction from "@components/transaction/Transaction";
-import transactions from "@mocks/transactions";
 import changeThemeStore from "@states/ColourTheme";
 import { convert } from "@helpers/CurrencyConversion";
 import {Ionicons} from "@expo/vector-icons";
 import {Link} from "expo-router";
+import TransactionRepository, { Transaction as TransactionType } from "@database/repository/TransactionRepository";
 
 export default function expenses() {
 
   const { theme } = changeThemeStore();
+
+  const [transactions, setTransactions] = useState<TransactionType[]>([]);
+  const [transactionsPricesSum, setTransactionsPricesSum] = useState(0);
+
+  const getAllTransactions = async () => {
+    setTransactions(await TransactionRepository.getAll());
+
+    const repositoryResponse = await TransactionRepository.sumAllPrices("expense")
+    setTransactionsPricesSum(repositoryResponse.data.totalPrice);
+  }
+
+  useEffect(() => {
+    getAllTransactions();
+  }, [])
 
   return (
     <FixedScreen>
@@ -23,7 +37,7 @@ export default function expenses() {
         <Text className="text-states-danger h3">Despesas </Text>
         <View className="flex flex-row gap-1 items-center justify-center">
           <Text className="h4 text-alternative">R$ </Text>
-          <Text className="h3 text-normal">{convert(6442.14)} </Text>
+          <Text className="h3 text-normal">{convert(transactionsPricesSum)} </Text>
           <Text className="small text-alternative uppercase">Total </Text>
         </View>
       </View>
@@ -36,7 +50,7 @@ export default function expenses() {
               <Transaction
                 key={index}
                 paid={transaction.paid}
-                value={transaction.value}
+                value={transaction.price}
                 expenseName={transaction.description}
                 transactionId={transaction.id}
               />

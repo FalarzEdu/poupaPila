@@ -1,17 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import transactions from "../../src/mocks/transactions";
-import Transaction from "../../src/components/transaction/Transaction";
-import MonthSlider from "../../src/components/month_slider/MonthSlider";
-import FixedScreen from "../../src/containers/screen/FixedScreen";
-import { convert } from "../../src/helpers/CurrencyConversion";
+import React, {useEffect, useState} from "react";
+import Transaction from "@components/transaction/Transaction";
+import MonthSlider from "@components/month_slider/MonthSlider";
+import FixedScreen from "@containers/screen/FixedScreen";
+import { convert } from "@helpers/CurrencyConversion";
 import {Link} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
 import changeThemeStore from "@states/ColourTheme";
+import TransactionRepository, {Transaction as TransactionType} from "@database/repository/TransactionRepository";
 
 export default function revenues() {
 
   const { theme } = changeThemeStore();
+
+  const [transactions, setTransactions] = useState<TransactionType[]>([]);
+  const [transactionsPricesSum, setTransactionsPricesSum] = useState(0);
+
+  const getAllTransactions = async () => {
+    setTransactions(await TransactionRepository.getAll());
+
+    const repositoryResponse = await TransactionRepository.sumAllPrices("revenue")
+    setTransactionsPricesSum(repositoryResponse.data.totalPrice);
+  }
+
+  useEffect(() => {
+    getAllTransactions();
+  }, [])
 
   return (
     <FixedScreen>
@@ -23,7 +37,7 @@ export default function revenues() {
         <Text className="text-states-success h3">Receitas </Text>
         <View className="flex flex-row gap-1 items-center justify-center">
           <Text className="h4 text-alternative">R$ </Text>
-          <Text className="h3 text-normal">{convert(6700)} </Text>
+          <Text className="h3 text-normal">{convert(transactionsPricesSum)} </Text>
           <Text className="small text-alternative uppercase">Total </Text>
         </View>
       </View>
@@ -36,7 +50,7 @@ export default function revenues() {
               <Transaction
                 key={index}
                 paid={transaction.paid}
-                value={transaction.value}
+                value={transaction.price}
                 expenseName={transaction.description}
                 transactionId={transaction.id}
               />

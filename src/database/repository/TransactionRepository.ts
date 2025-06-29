@@ -13,6 +13,7 @@ export type Transaction = {
 
 type DatabaseResponse = {
   success: boolean,
+  data?: any
 }
 
 export default class TransactionRepository {
@@ -50,6 +51,20 @@ export default class TransactionRepository {
     finally
     {
       await statement.finalizeAsync();
+    }
+  }
+
+  public static async sumAllPrices(transferType: Transaction["type"]): Promise<DatabaseResponse> {
+
+    try {
+      const result = await db.getFirstAsync(
+        `SELECT SUM(price) as totalPrice FROM transactions WHERE type = '${transferType}'`,
+      )
+      return { success: true, data: result };
+    }
+    catch(error) {
+      console.log(error)
+      return { success: false }
     }
   }
 
