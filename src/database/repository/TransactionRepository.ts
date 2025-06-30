@@ -84,6 +84,8 @@ export default class TransactionRepository {
                   type = 'expense'
                 AND
                   category.id = transactions.categoryId
+                AND 
+                  strftime('%m', date) = strftime('%m', date())
               GROUP BY
                   categoryId
           ),
@@ -93,6 +95,8 @@ export default class TransactionRepository {
                   transactions 
               WHERE 
                   type = 'expense'
+              AND
+                  strftime('%m', date) = strftime('%m', date())
           )
           SELECT
               ce.categoryPrice,
