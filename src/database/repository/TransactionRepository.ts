@@ -18,8 +18,15 @@ type DatabaseResponse = {
 
 export default class TransactionRepository {
 
-  public static async getAll(): Promise<Transaction[]> {
-    return await db.getAllAsync("SELECT * FROM transactions;");
+  public static async getAll(monthNumber: string, yearNumber: string): Promise<Transaction[]> {
+    return await db.getAllAsync(`
+        SELECT * FROM 
+            transactions 
+        WHERE 
+            strftime('%m', date) = '${monthNumber}'
+        AND
+            strftime('%Y', date) = '${yearNumber}'
+    `);
   }
 
   public static async insert(transaction: Omit<Transaction, "id">): Promise<DatabaseResponse>  {
@@ -54,11 +61,21 @@ export default class TransactionRepository {
     }
   }
 
-  public static async sumAllPrices(transferType: Transaction["type"]): Promise<DatabaseResponse> {
+  public static async sumAllPrices(
+    transferType: Transaction["type"], monthNumber: string, yearNumber: string
+  ): Promise<DatabaseResponse> {
 
     try {
-      const result = await db.getFirstAsync(
-        `SELECT SUM(price) as totalPrice FROM transactions WHERE type = '${transferType}'`,
+      const result = await db.getFirstAsync(`
+          SELECT SUM(price) as totalPrice 
+          FROM transactions 
+          WHERE 
+              type = '${transferType}'
+          AND
+              strftime('%m', date) = '${monthNumber}'
+          AND
+              strftime('%Y', date) = '${yearNumber}'
+          `,
       )
       return { success: true, data: result };
     }
@@ -113,6 +130,12 @@ export default class TransactionRepository {
       catch(error) {
         console.log(error)
       }
+  }
+
+  public static test() {
+    return db.getFirstSync(`
+      SELECT strftime('%Y', date) FROM transactions
+    `)
   }
 
 }

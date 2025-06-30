@@ -4,12 +4,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import changeThemeStore from "@states/ColourTheme";
 import { convert } from "@helpers/CurrencyConversion";
 import Label from "@components/label/Label";
+import {formatTimestampDate} from "@helpers/DateHelper";
 
 interface TransactionProps {
   paid: boolean;
   value: number;
   expenseName: string;
   transactionId: number;
+  date: string;
 }
 
 export default function Transaction({ ...props }: TransactionProps) {
@@ -41,7 +43,9 @@ export default function Transaction({ ...props }: TransactionProps) {
       </View>
 
       <View>
-        <Text className="small text-alternative">28/08/2025 </Text>
+        <Text className="small text-alternative">
+          {formatTimestampDate(props.date)}
+        </Text>
         <View className="flex flex-row items-end">
           <Text className="small text-alternative">R$ </Text>
           <Text className="paragraph text-normal">{convert(props.value)} </Text>

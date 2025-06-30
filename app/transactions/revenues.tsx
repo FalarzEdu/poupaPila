@@ -8,29 +8,57 @@ import {Link} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
 import changeThemeStore from "@states/ColourTheme";
 import TransactionRepository, {Transaction as TransactionType} from "@database/repository/TransactionRepository";
+import { getFullMonth } from "@helpers/DateHelper";
 
 export default function revenues() {
 
   const { theme } = changeThemeStore();
 
+  const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth() + 1);
+  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
-  const [transactionsPricesSum, setTransactionsPricesSum] = useState(0);
+  const [transactionsPricesSum, setTransactionsPricesSum] = useState<number>(0);
 
   const getAllTransactions = async () => {
-    setTransactions(await TransactionRepository.getAll());
+    setTransactions(await TransactionRepository.getAll(
+      selectedMonth.toString().padStart(2, '0'), selectedYear.toString()));
 
-    const repositoryResponse = await TransactionRepository.sumAllPrices("revenue")
+    const repositoryResponse = await TransactionRepository.sumAllPrices(
+      "revenue", selectedMonth.toString().padStart(2, '0'), selectedYear.toString())
     setTransactionsPricesSum(repositoryResponse.data.totalPrice);
+  }
+
+  const changeSelectedPeriod = (change: 'previous' | 'next') => {
+    if (change === 'next') {
+      if (selectedMonth === 11) {
+        setSelectedMonth(0);
+        setSelectedYear(selectedYear + 1);
+        return
+      }
+      setSelectedMonth(selectedMonth + 1);
+      return;
+    }
+
+    if (selectedMonth === 0) {
+      setSelectedMonth(11);
+      setSelectedYear(selectedYear - 1);
+      return
+    }
+    setSelectedMonth(selectedMonth - 1);
   }
 
   useEffect(() => {
     getAllTransactions();
-  }, [])
+  }, [selectedMonth]);
 
   return (
     <FixedScreen>
       <View className="my-4">
-        <MonthSlider month="Dezembro" />
+        <MonthSlider
+          month={ getFullMonth(selectedMonth) }
+          previousMonth={() => changeSelectedPeriod("previous")}
+          nextMonth={() => changeSelectedPeriod("next")}
+        />
       </View>
 
       <View className="flex flex-row gap-4 justify-center items-center w-full">
@@ -53,6 +81,7 @@ export default function revenues() {
                 value={transaction.price}
                 expenseName={transaction.description}
                 transactionId={transaction.id}
+                date={transaction.date}
               />
               {index < transactions.length && (
                 <View className="h-[1px] w-full bg-neutral-one"></View>

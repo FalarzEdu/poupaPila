@@ -41,7 +41,8 @@ export default function home() {
         label: {
           text: formatDecimalToPercentage(chart.categoryPrice / chart.totalPrice) + "%",
           fontWeight: "bolder",
-          fill: theme.background.primary
+          fill: theme.background.primary,
+          fontSize: 16
         }
       });
 
