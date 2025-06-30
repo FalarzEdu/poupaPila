@@ -51,7 +51,7 @@ Os pontos acima compõe o núcleo funcional da aplicação. Outras possíveis im
 - [x] Registro de transações.
 - [x] Classificação de transações entre **despesas** e **receitas**.
 - [x] Separação de transações por categorias.
-- [ ] Gráfico contendo dados de gastos separados por categoria.
+- [x] Gráfico contendo dados de gastos separados por categoria.
 
 #### Secundárias
 
@@ -135,7 +135,7 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 - [x] Construção da UI da página central
 - [x] Visualização de dados gerais, como saldo atual, saldo no início do mês e projeção de saldo ao final do mês.
 - [x] Resumo do valor total das receitas e despesas.
-- [ ] Gráfico para separação das despesas em função das categorias
+- [x] Gráfico para separação das despesas em função das categorias
 
 ### ----------------------------------------------------------------------------
 
