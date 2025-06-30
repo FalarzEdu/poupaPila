@@ -29,10 +29,12 @@ export default function newRevenue() {
 
   const handleTransactionInsert = async () => {
     try {
+      const formattedPrice
+        = Number(price.replace("R$ ", "").replace(",", "."));
       const result = await TransactionRepository.insert({
         description: description,
         type: 'revenue',
-        price: Number(price),
+        price: formattedPrice,
         installments: 1,
         paid: paid,
         date: dueDate.toISOString(),
@@ -56,7 +58,7 @@ export default function newRevenue() {
 
         <NewTransactionRow.Text icon={"document-text-outline"} placeholder={"Descrição"} onChange={setDescription} />
 
-        <NewTransactionRow.Text icon={"pricetag-outline"} placeholder={"R$ 0,00"} onChange={setPrice} />
+        <NewTransactionRow.Currency icon={"pricetag-outline"} placeholder={"R$ 0,00"} onChange={setPrice} />
 
         <NewTransactionRow.Select icon={"extension-puzzle-outline"} placeholder={"Categoria"} options={allCategories} onChange={setCategory} />
 

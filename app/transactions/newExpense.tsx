@@ -30,10 +30,12 @@ export default function newExpense() {
 
   const handleTransactionInsert = async () => {
     try {
+      const formattedPrice
+            = Number(price.replace("R$ ", "").replace(",", "."));
       const result = await TransactionRepository.insert({
         description: description,
         type: 'expense',
-        price: Number(price),
+        price: formattedPrice,
         installments: Number(installments),
         paid: paid,
         date: dueDate.toISOString(),

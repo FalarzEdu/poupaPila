@@ -4,7 +4,7 @@ import PieChart from "react-native-pie-chart";
 export type DoughnutSeries = {
   value: number;
   color: string;
-  label?: { text: string, fontWeight?: 'normal' | 'bold' | 'bolder', fill?: string };
+  label?: { text: string, fontWeight?: 'normal' | 'bold' | 'bolder', fill?: string, fonSize?: number };
 }
 
 export type DoughnutLabelData = {

@@ -6,6 +6,11 @@ export type Category = {
   colour: string;
 };
 
+type DatabaseResponse = {
+  success: boolean,
+  data?: any
+}
+
 export default class CategoryRepository {
 
   public static async getAll(): Promise<Category[]> {
@@ -21,6 +26,24 @@ export default class CategoryRepository {
       console.log(result.lastInsertRowId.toLocaleString());
     } finally {
       await statement.finalizeAsync();
+    }
+  }
+
+  public static async findTransactionCategory(transactionId: number): Promise<DatabaseResponse> {
+    try {
+      const result = await db.getFirstAsync(`
+        SELECT * FROM category
+        WHERE
+            category.id = (
+                SELECT categoryId FROM transactions WHERE id = ${transactionId}    
+            )
+    `)
+      return { success: true, data: result };
+    }
+    catch (error)
+    {
+      console.log(error)
+      return { success: false }
     }
   }
 }
