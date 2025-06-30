@@ -68,4 +68,47 @@ export default class TransactionRepository {
     }
   }
 
+  public static async expensesByCategory(): Promise<DatabaseResponse> {
+
+    try {
+      const result = await db.getAllAsync(`
+          WITH category_expenses AS (
+              SELECT SUM(price) as categoryPrice,
+                     category.description,
+                     category.colour
+              FROM
+                  transactions
+                      LEFT JOIN
+                  category
+              WHERE
+                  type = 'expense'
+                AND
+                  category.id = transactions.categoryId
+              GROUP BY
+                  categoryId
+          ),
+          total_expenses AS (
+              SELECT SUM(price) as totalPrice 
+              FROM 
+                  transactions 
+              WHERE 
+                  type = 'expense'
+          )
+          SELECT
+              ce.categoryPrice,
+              ce.description,
+              ce.colour,
+              ct.totalPrice
+          FROM
+              category_expenses ce,
+              total_expenses AS ct
+
+      `)
+      return { success: true, data: result };
+    }
+      catch(error) {
+        console.log(error)
+      }
+  }
+
 }

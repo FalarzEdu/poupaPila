@@ -17,7 +17,7 @@ export default class DatabaseSeed {
       db.execSync(`
       CREATE TABLE IF NOT EXISTS category (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        description TEXT NOT NULL,
+        description TEXT NOT NULL UNIQUE,
         colour TEXT
       );
     `);
@@ -29,9 +29,9 @@ export default class DatabaseSeed {
       //       ($description, $category);
       // `)
       //
-      // statement.executeSync("Compras", "#d1d11b");
-      // statement.executeSync("Lazer", "#f2a5b8");
-      // statement.executeSync("Outros", "#6d6aba");
+      // statement.executeSync("Compras", "#40F99B");
+      // statement.executeSync("Lazer", "#61707D");
+      // statement.executeSync("Outros", "#9D69A3");
       // statement.executeSync("Fixos", "#3dd44a");
 
     } catch (error) {

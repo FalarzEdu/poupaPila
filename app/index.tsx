@@ -1,24 +1,22 @@
 import "../public/css/global.css";
 
 import { View } from "react-native";
-import React, {useEffect} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 
-import changeThemeStore from "../src/states/ColourTheme";
-import FixedScreen from "../src/containers/screen/FixedScreen";
-import MainDisplay from "../src/components/balance/MainDisplay";
+import changeThemeStore from "@states/ColourTheme";
+import FixedScreen from "@containers/screen/FixedScreen";
+import MainDisplay from "@components/balance/MainDisplay";
 import { useFonts } from "expo-font";
-import SecondaryDisplay from "../src/components/balance/SecondaryDisplay";
-import CardDisplay from "../src/components/balance/CardDisplay/CardDisplay";
-import {Route} from "expo-router/build/Route";
-import {Router} from "expo-router/build/rsc/router/client";
-import {ExpoRouter, Redirect, useRouter} from "expo-router";
-import {RouterStore} from "expo-router/build/global-state/router-store";
+import SecondaryDisplay from "@components/balance/SecondaryDisplay";
+import CardDisplay from "@components/balance/CardDisplay/CardDisplay";
+import TransactionRepository from "@database/repository/TransactionRepository";
+import CustomDoughnutChart, {DoughnutLabelData, DoughnutSeries} from "@components/DoughnutChart";
 
 export default function home() {
-  const router = useRouter();
+  const { theme } = changeThemeStore();
 
   // AUTO REDIRECT FOR TESTS
-  return <Redirect href="/transactions/newExpense" />;
+  // return <Redirect href="/transactions/newExpense" />;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
@@ -27,7 +25,49 @@ export default function home() {
     "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
   });
 
-  const { theme } = changeThemeStore();
+  const [chartInfo, setChartInfo] = useState<Array<DoughnutSeries> | null>(null)
+  const [chartLabelData, setChartLabelData] = useState<Array<DoughnutLabelData>>([])
+
+  const loadChartInformation = async (): Promise<void> => {
+    const chartData = await TransactionRepository.expensesByCategory();
+
+    const chartSeries: Array<DoughnutSeries> = [];
+    const chartLabel: Array<DoughnutLabelData> = [];
+    for (const chart of chartData.data)
+    {
+      chartSeries.push({
+        value: chart.categoryPrice,
+        color: chart.colour,
+        label: {
+          text: formatDecimalToPercentage(chart.categoryPrice / chart.totalPrice) + "%",
+          fontWeight: "bolder",
+          fill: theme.background.primary
+        }
+      });
+
+      chartLabel.push({
+        description: chart.description,
+        colour: chart.colour
+      });
+    }
+
+    setChartInfo(chartSeries);
+    setChartLabelData(chartLabel);
+  }
+
+  const formatDecimalToPercentage = (value: number): string => {
+    return Math.trunc(value * 100).toString();
+  }
+
+  useEffect(() => {
+    loadChartInformation();
+  }, []);
+
+  if (!chartInfo || !chartLabelData) {
+    return (
+      <Suspense fallback={<div>Loading...</div>} />
+    )
+  }
 
   return (
     <FixedScreen>
@@ -87,6 +127,10 @@ export default function home() {
             Despesas por categoria
           </Text>
         </View> */}
+      </View>
+
+      <View>
+        <CustomDoughnutChart title="Despesas por Categoria" labelData={chartLabelData} data={chartInfo!} />
       </View>
     </FixedScreen>
   );
