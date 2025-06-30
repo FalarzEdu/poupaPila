@@ -5,7 +5,6 @@ import CategoryRepository, {Category} from "@database/repository/CategoryReposit
 interface LabelProps {
   transactionId: number;
 }
-// TODO FIX THIS AND MAKE IT WORK WITH THE DATABASE DATA
 
 export default function Label({ transactionId }: LabelProps) {
 
