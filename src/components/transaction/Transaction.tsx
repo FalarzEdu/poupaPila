@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import changeThemeStore from "@states/ColourTheme";
 import { convert } from "@helpers/CurrencyConversion";
 import Label from "@components/label/Label";
@@ -17,18 +17,17 @@ export default function Transaction({ ...props }: TransactionProps) {
 
   return (
     <View className="flex flex-row items-center gap-6">
-      <View className="">
-        {!props.paid && (
-          <Ionicons
-            name="hourglass-outline"
-            color={theme.text.colours.muted}
-            size={28}
-          />
-        )}
-        {props.paid && (
+      <View>
+        {props.paid ? (
           <Ionicons
             name="checkmark-done-outline"
             color={theme.colours.states.success}
+            size={28}
+          />
+        ) : (
+          <Ionicons
+            name="hourglass-outline"
+            color={theme.text.colours.muted}
             size={28}
           />
         )}
