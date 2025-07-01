@@ -1,6 +1,6 @@
 import "../public/css/global.css";
 
-import { View } from "react-native";
+import {Text, View} from "react-native";
 import React, {Suspense, useEffect, useState} from "react";
 
 import changeThemeStore from "@states/ColourTheme";
@@ -11,12 +11,14 @@ import SecondaryDisplay from "@components/balance/SecondaryDisplay";
 import CardDisplay from "@components/balance/CardDisplay/CardDisplay";
 import TransactionRepository from "@database/repository/TransactionRepository";
 import CustomDoughnutChart, {DoughnutLabelData, DoughnutSeries} from "@components/DoughnutChart";
+import {Link, Redirect} from "expo-router";
+import BudgetSection from "@components/budgets/BudgetSection";
 
 export default function home() {
   const { theme } = changeThemeStore();
 
   // AUTO REDIRECT FOR TESTS
-  // return <Redirect href="/transactions/newExpense" />;
+  // return <Redirect href="/budgets/budgets" />;
 
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
@@ -123,16 +125,16 @@ export default function home() {
           </View>
         </View>
 
-        {/* <View className="mt-6">
-          <Text className="h4 text-alternative text-center">
-            Despesas por categoria
-          </Text>
-        </View> */}
       </View>
 
       <View>
         <CustomDoughnutChart title="Despesas por Categoria" labelData={chartLabelData} data={chartInfo!} />
       </View>
+
+      <Link href="/budgets/budgets" className="bg-secondary w-full px-4 py-4 mt-8 rounded-xl">
+        <BudgetSection />
+      </Link>
+
     </FixedScreen>
   );
 }

@@ -1,15 +1,11 @@
 import db from "@database/databaseInit";
+import {DatabaseResponse} from "@types/databaseResponse";
 
 export type Category = {
   id: number;
   description: string;
   colour: string;
 };
-
-type DatabaseResponse = {
-  success: boolean,
-  data?: any
-}
 
 export default class CategoryRepository {
 
