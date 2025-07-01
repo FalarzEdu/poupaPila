@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
 import changeThemeStore from "@states/ColourTheme";
 import {Ionicons} from "@expo/vector-icons";
-import {NewTransactionRowProps} from "@components/transaction/NewTransactionRow/NewTransactionRow";
+import {NewTransactionRowProps} from "@components/inputs/CustomInput";
 import ToggleSlider from "@components/ToggleSlider";
 
 interface SliderTransactionRowProps extends NewTransactionRowProps {
@@ -10,7 +10,7 @@ interface SliderTransactionRowProps extends NewTransactionRowProps {
   sliderColour: 'green' | 'red'
 }
 
-export default function SliderTransactionRow({ ...props }: SliderTransactionRowProps) {
+export default function ToggleSliderInput({ ...props }: SliderTransactionRowProps) {
   const { theme } = changeThemeStore();
 
   const [paid, setPaid] = React.useState<string>("Pendente");

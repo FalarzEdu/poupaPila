@@ -1,7 +1,7 @@
 import {Alert, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import changeThemeStore from "@states/ColourTheme";
-import NewTransactionRow from "@components/transaction/NewTransactionRow/NewTransactionRow";
+import CustomInput from "@components/inputs/CustomInput";
 import FixedFullScreen from "@containers/screen/FixedFullScreen";
 import BottomButton from "@components/BottomButton";
 import TransactionRepository from "@database/repository/TransactionRepository";
@@ -57,17 +57,17 @@ export default function newExpense() {
     <FixedFullScreen>
       <View>
 
-        <NewTransactionRow.Text icon={"document-text-outline"} placeholder={"Descrição"} onChange={setDescription} />
+        <CustomInput.Text icon={"document-text-outline"} placeholder={"Descrição"} onChange={setDescription} />
 
-        <NewTransactionRow.Currency icon={"pricetag-outline"} placeholder={"0"} onChange={setPrice} />
+        <CustomInput.Currency icon={"pricetag-outline"} placeholder={"0"} onChange={setPrice} />
 
-        <NewTransactionRow.Text icon={"reload"} placeholder={"Parcelas"} onChange={setInstallments} />
+        <CustomInput.Text icon={"reload"} placeholder={"Parcelas"} onChange={setInstallments} />
 
-        <NewTransactionRow.Select icon={"extension-puzzle-outline"} placeholder={"Categoria"} options={allCategories} onChange={setCategory} />
+        <CustomInput.Select icon={"extension-puzzle-outline"} placeholder={"Categoria"} options={allCategories} onChange={setCategory} />
 
-        <NewTransactionRow.Date icon={"calendar-outline"} placeholder={"Data de Vencimento"} onChange={setDueDate} />
+        <CustomInput.Date icon={"calendar-outline"} placeholder={"Data de Vencimento"} onChange={setDueDate} />
 
-        <NewTransactionRow.Slider icon={"checkmark-circle"} placeholder={"Efetivada"} onChange={setPaid} sliderColour={"red"} />
+        <CustomInput.Slider icon={"checkmark-circle"} placeholder={"Efetivada"} onChange={setPaid} sliderColour={"red"} />
 
       </View>
 

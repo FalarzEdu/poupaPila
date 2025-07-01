@@ -2,14 +2,14 @@ import { FlatList, Modal, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import changeThemeStore from "@states/ColourTheme";
 import { Ionicons } from "@expo/vector-icons";
-import { NewTransactionRowProps } from "@components/transaction/NewTransactionRow/NewTransactionRow";
+import { NewTransactionRowProps } from "@components/inputs/CustomInput";
 
 interface SelectTransactionRowProps extends NewTransactionRowProps {
   options: Array<any>;
   onChange: (categoryId: number) => void;
 }
 
-export default function SelectTransactionRow({ ...props }: SelectTransactionRowProps) {
+export default function SelectInput({ ...props }: SelectTransactionRowProps) {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("");
 
