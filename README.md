@@ -55,7 +55,7 @@ Os pontos acima compõe o núcleo funcional da aplicação. Outras possíveis im
 
 #### Secundárias
 
-- [ ] Criação de orçamentos.
+- [x] Criação de orçamentos.
 - [ ] Criação de metas.
 - [ ] Customização de ícones e categorias.
 - [ ] Rastreador de pagamentos recorrentes.
@@ -149,9 +149,9 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 **Tarefas**
 
-- [ ] Atualizar diagrama do banco de dados para comportar nova funcionalidade.
-- [ ] Adicionar UI para criação de orçamento.
-- [ ] Implementação da barra de controle do orçamento na tela inicial.
+- [x] Atualizar diagrama do banco de dados para comportar nova funcionalidade.
+- [x] Adicionar UI para criação de orçamento.
+- [x] Implementação da barra de controle do orçamento na tela inicial.
 
 **_Story_**: Como usuário, é útil possuir uma seção onde posso estipular metas básicas, como guardar um valor X e poder visualizar (na página inicial) quanto ainda falta para atingir a meta em questão.
 

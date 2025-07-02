@@ -3,9 +3,9 @@ import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {MaskedTextInput} from "react-native-mask-text";
-import {TextTransactionRowProps} from "@components/transaction/NewTransactionRow/TextTransactionRow";
+import {TextTransactionRowProps} from "@components/inputs/TextTransactionRow";
 
-export default function CurrencyTransactionRow( { ...props }: TextTransactionRowProps ): React.JSX.Element {
+export default function CurrencyInput({ ...props }: TextTransactionRowProps ): React.JSX.Element {
   const { theme } = changeThemeStore();
 
   return (

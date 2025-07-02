@@ -2,7 +2,7 @@ import {StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
 import changeThemeStore from "@states/ColourTheme";
 import {Ionicons} from "@expo/vector-icons";
-import {NewTransactionRowProps} from "@components/transaction/NewTransactionRow/NewTransactionRow";
+import {NewTransactionRowProps} from "@components/inputs/CustomInput";
 
 export interface TextTransactionRowProps extends NewTransactionRowProps {
   onChange: (text: string) => void

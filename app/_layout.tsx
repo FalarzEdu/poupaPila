@@ -48,6 +48,13 @@ export default function _layout() {
         }}
       />
 
+      <Stack.Screen
+        name="budgets/budgets"
+        options={{
+          title: "Budgets",
+        }}
+      />
+
     </Stack>
   );
 }

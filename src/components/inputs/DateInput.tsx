@@ -2,14 +2,14 @@ import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React, {useState} from "react";
 import changeThemeStore from "@states/ColourTheme";
 import {Ionicons} from "@expo/vector-icons";
-import {NewTransactionRowProps} from "@components/transaction/NewTransactionRow/NewTransactionRow";
+import {NewTransactionRowProps} from "@components/inputs/CustomInput";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 interface DateTransactionRowProps extends NewTransactionRowProps {
   onChange: (date: Date) => void
 }
 
-export default function DateTransactionRow({ ...props }: DateTransactionRowProps) {
+export default function DateInput({ ...props }: DateTransactionRowProps) {
   const { theme } = changeThemeStore();
 
   const [date, setDate] = useState<Date>(new Date());

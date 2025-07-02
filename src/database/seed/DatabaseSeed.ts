@@ -59,11 +59,23 @@ export default class DatabaseSeed {
     }
   }
 
+  private static budgetsTable(): void {
+    db.execSync(`
+      CREATE TABLE IF NOT EXISTS budgets (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          categoryId INTEGER NOT NULL,
+          value REAL NOT NULL,
+          FOREIGN KEY (categoryId) REFERENCES category(id) ON DELETE CASCADE
+      )
+    `)
+  }
+
   public static initializeDatabase(): void {
     try {
       this.enableForeignKeys()
       this.categoryTable();
       this.transactionTable();
+      this.budgetsTable();
     } catch (error) {
       console.error(error);
     }
