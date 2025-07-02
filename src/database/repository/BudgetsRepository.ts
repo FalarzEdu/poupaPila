@@ -60,7 +60,7 @@ export default class BudgetsRepository {
     {
       const response = await db.getAllAsync(`
       SELECT budgets.value as budgetValue, category.description as categoryName, (
-        SELECT SUM(transactions.price) 
+        SELECT TOTAL(transactions.price) 
         FROM 
             transactions
         WHERE
