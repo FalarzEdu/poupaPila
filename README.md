@@ -56,7 +56,7 @@ Os pontos acima compõe o núcleo funcional da aplicação. Outras possíveis im
 #### Secundárias
 
 - [x] Criação de orçamentos.
-- [ ] Criação de metas.
+- [x] Criação de metas.
 - [ ] Customização de ícones e categorias.
 - [ ] Rastreador de pagamentos recorrentes.
 - [ ] Dicas e sugestões baseados em compras e hábitos passados.
@@ -155,11 +155,11 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 **_Story_**: Como usuário, é útil possuir uma seção onde posso estipular metas básicas, como guardar um valor X e poder visualizar (na página inicial) quanto ainda falta para atingir a meta em questão.
 
-- [ ] Atualizar diagrama do banco de dados para comportar nova funcionalidade.
+- [x] Atualizar diagrama do banco de dados para comportar nova funcionalidade.
 
-- [ ] Adicionar UI para criação de meta.
+- [x] Adicionar UI para criação de meta.
 
-- [ ] Implementação da barra de controle de meta na tela inicial.
+- [x] Implementação da barra de controle de meta na tela inicial.
 
 ### ----------------------------------------------------------------------------
 
