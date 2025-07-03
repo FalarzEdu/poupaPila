@@ -79,7 +79,6 @@ export default class BudgetsRepository {
       WHERE
           category.id = budgets.categoryId
     `)
-      console.log(response)
       return { success: true, data: response }
     }
     catch (error)

@@ -70,12 +70,25 @@ export default class DatabaseSeed {
     `)
   }
 
+  private static goalsTable(): void {
+    db.execSync(`
+      CREATE TABLE IF NOT EXISTS goals (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL,
+          goalValue REAL NOT NULL,
+          currentValue REAL NOT NULL DEFAULT 0,
+          deadline TEXT NOT NULL
+      )
+    `)
+  }
+
   public static initializeDatabase(): void {
     try {
       this.enableForeignKeys()
       this.categoryTable();
       this.transactionTable();
       this.budgetsTable();
+      this.goalsTable();
     } catch (error) {
       console.error(error);
     }

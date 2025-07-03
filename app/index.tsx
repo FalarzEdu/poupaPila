@@ -13,6 +13,8 @@ import TransactionRepository from "@database/repository/TransactionRepository";
 import CustomDoughnutChart, {DoughnutLabelData, DoughnutSeries} from "@components/DoughnutChart";
 import {Link, Redirect} from "expo-router";
 import BudgetSection from "@components/budgets/BudgetSection";
+import ScrollableFullScreen from "@containers/screen/ScrollableFullScreen";
+import GoalSection from "@components/goals/GoalSection";
 
 export default function home() {
   const { theme } = changeThemeStore();
@@ -73,7 +75,7 @@ export default function home() {
   }
 
   return (
-    <FixedScreen>
+    <ScrollableFullScreen>
       <View className="mt-8">
         <View className="flex flex-row justify-between content-end">
           <SecondaryDisplay
@@ -131,10 +133,14 @@ export default function home() {
         <CustomDoughnutChart title="Despesas por Categoria" labelData={chartLabelData} data={chartInfo!} />
       </View>
 
-      <Link href="/budgets/budgets" className="bg-secondary w-full px-4 py-4 mt-8 rounded-xl">
+      <Link href="/budgets/budgets" className="bg-secondary w-full px-4 py-4 mt-12 rounded-xl">
         <BudgetSection />
       </Link>
 
-    </FixedScreen>
+      <Link href="/goals/goals" className="bg-secondary w-full px-4 py-4 mb-4 mt-12 rounded-xl">
+        <GoalSection />
+      </Link>
+
+    </ScrollableFullScreen>
   );
 }
