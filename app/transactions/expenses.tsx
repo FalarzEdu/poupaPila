@@ -1,6 +1,5 @@
 import { Text, View } from "react-native";
 import React, {useEffect, useState} from "react";
-import FixedScreen from "@containers/screen/FixedScreen";
 import MonthSlider from "@components/month_slider/MonthSlider";
 import Transaction from "@components/transaction/Transaction";
 import changeThemeStore from "@states/ColourTheme";
@@ -9,6 +8,7 @@ import {Ionicons} from "@expo/vector-icons";
 import {Link} from "expo-router";
 import TransactionRepository, { Transaction as TransactionType } from "@database/repository/TransactionRepository";
 import { getFullMonth } from "@helpers/DateHelper";
+import ScrollableFullScreen from "@containers/screen/ScrollableFullScreen";
 
 export default function expenses() {
 
@@ -52,7 +52,7 @@ export default function expenses() {
   }, [selectedMonth]);
 
   return (
-    <FixedScreen>
+    <ScrollableFullScreen>
       <View className="my-4">
         <MonthSlider
           month={ getFullMonth(selectedMonth) }
@@ -99,6 +99,6 @@ export default function expenses() {
         />
       </Link>
 
-    </FixedScreen>
+    </ScrollableFullScreen>
   );
 }

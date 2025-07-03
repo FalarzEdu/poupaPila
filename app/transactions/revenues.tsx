@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React, {useEffect, useState} from "react";
 import Transaction from "@components/transaction/Transaction";
 import MonthSlider from "@components/month_slider/MonthSlider";
-import FixedScreen from "@containers/screen/FixedScreen";
 import { convert } from "@helpers/CurrencyConversion";
 import {Link} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
 import changeThemeStore from "@states/ColourTheme";
 import TransactionRepository, {Transaction as TransactionType} from "@database/repository/TransactionRepository";
 import { getFullMonth } from "@helpers/DateHelper";
+import ScrollableFullScreen from "@containers/screen/ScrollableFullScreen";
 
 export default function revenues() {
 
@@ -52,7 +52,7 @@ export default function revenues() {
   }, [selectedMonth]);
 
   return (
-    <FixedScreen>
+    <ScrollableFullScreen>
       <View className="my-4">
         <MonthSlider
           month={ getFullMonth(selectedMonth) }
@@ -98,6 +98,6 @@ export default function revenues() {
           className="w-fit"
         />
       </Link>
-    </FixedScreen>
+    </ScrollableFullScreen>
   );
 }

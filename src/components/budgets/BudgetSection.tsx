@@ -7,7 +7,6 @@ import BudgetRow from "@components/budgets/BudgetRow";
 export default function BudgetSection(props: {}) {
 
   const [budgets, setBudgets] = useState<Array<{budgetValue: number, categoryExpense: number, categoryName: string}>>([]);
-  const [budgetSpentPercentage, setBudgetSpentPercentage] = useState(0);
 
   const calcBudgets = async () => {
     const result = await BudgetsRepository.calcBudgets();
