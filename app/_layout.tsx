@@ -51,7 +51,14 @@ export default function _layout() {
       <Stack.Screen
         name="budgets/budgets"
         options={{
-          title: "Budgets",
+          title: "Orçamentos",
+        }}
+      />
+
+      <Stack.Screen
+        name="goals/goals"
+        options={{
+          title: "Objetivos",
         }}
       />
 
