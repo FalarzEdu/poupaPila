@@ -19,13 +19,14 @@ export default function _layout() {
     <Stack screenOptions={{
       headerStyle: { backgroundColor: theme.background.primary },
       headerTintColor: theme.text.colours.normal,
-      headerRight: () => (
-        <Ionicons
-          name="ellipsis-horizontal-outline"
-          size={28}
-          color={theme.text.colours.normal}
-        />
-      ),
+      headerShadowVisible: true,
+      // headerRight: () => (
+      //   <Ionicons
+      //     name="ellipsis-horizontal-outline"
+      //     size={28}
+      //     color={theme.text.colours.normal}
+      //   />
+      // ),
     }}>
 
       <Stack.Screen name="index" options={{title: ""}} />
@@ -59,6 +60,13 @@ export default function _layout() {
         name="goals/goals"
         options={{
           title: "Objetivos",
+        }}
+      />
+
+      <Stack.Screen
+        name="categories/newCategory"
+        options={{
+          title: "Nova Categoria",
         }}
       />
 

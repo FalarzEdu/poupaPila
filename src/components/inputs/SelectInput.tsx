@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import changeThemeStore from "@states/ColourTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { NewTransactionRowProps } from "@components/inputs/CustomInput";
+import {router} from "expo-router";
+import * as path from "node:path";
 
 interface SelectTransactionRowProps extends NewTransactionRowProps {
   options: Array<any>;
   onChange: (categoryId: number) => void;
+  customButtons?: Array<{title: string, action: () => void}>
 }
 
 export default function SelectInput({ ...props }: SelectTransactionRowProps) {
@@ -47,6 +50,17 @@ export default function SelectInput({ ...props }: SelectTransactionRowProps) {
           >
             <Text className="text-black text-base">Fechar</Text>
           </TouchableOpacity>
+          {
+            props.customButtons?.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                className="mt-4 py-3 bg-gray-200 rounded-md items-center"
+                onPress={item.action}
+              >
+                <Text className="text-black text-base">{item.title}</Text>
+              </TouchableOpacity>
+            ))
+          }
         </View>
       </View>
     </Modal>

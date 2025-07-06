@@ -63,7 +63,15 @@ export default function newExpense() {
 
         <CustomInput.Text icon={"reload"} placeholder={"Parcelas"} onChange={setInstallments} />
 
-        <CustomInput.Select icon={"extension-puzzle-outline"} placeholder={"Categoria"} options={allCategories} onChange={setCategory} />
+        <CustomInput.Select
+          icon={"extension-puzzle-outline"}
+          placeholder={"Categoria"}
+          options={allCategories}
+          onChange={setCategory}
+          customButtons={[
+            {title: "Criar", action: () => {router.push({pathname: "/categories/newCategory"})}},
+          ]}
+        />
 
         <CustomInput.Date icon={"calendar-outline"} placeholder={"Data de Vencimento"} onChange={setDueDate} />
 

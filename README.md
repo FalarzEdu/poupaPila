@@ -57,7 +57,7 @@ Os pontos acima compõe o núcleo funcional da aplicação. Outras possíveis im
 
 - [x] Criação de orçamentos.
 - [x] Criação de metas.
-- [ ] Customização de ícones e categorias.
+- [x] Customização de ícones e categorias.
 - [ ] Rastreador de pagamentos recorrentes.
 - [ ] Dicas e sugestões baseados em compras e hábitos passados.
 - [ ] Notificações "motivadoras".
