@@ -4,7 +4,11 @@ import {convert} from "@helpers/CurrencyConversion";
 import GoalsRepository, {Goal} from "@database/repository/GoalsRepository";
 import GoalRow from "@components/goals/GoalRow";
 
-export default function GoalSection(props: {}) {
+interface GoalSectionProps {
+  refreshKey: number
+}
+
+export default function GoalSection({ refreshKey }: GoalSectionProps) {
 
   const [goals, setGoals] = useState<Array<Goal>>([]);
 
@@ -15,7 +19,7 @@ export default function GoalSection(props: {}) {
 
   useEffect(() => {
     getAllGoals();
-  }, [])
+  }, [refreshKey]);
 
   if (goals.length === 0) {
     return(

@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {Alert, Pressable, StyleSheet, Text, View} from "react-native";
+import React, {useState} from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import changeThemeStore from "@states/ColourTheme";
 import { convert } from "@helpers/CurrencyConversion";
 import Label from "@components/label/Label";
 import {formatTimestampDate} from "@helpers/DateHelper";
+import TransactionRepository from "@database/repository/TransactionRepository";
 
 interface TransactionProps {
   paid: boolean;
@@ -17,10 +18,36 @@ interface TransactionProps {
 export default function Transaction({ ...props }: TransactionProps) {
   const { theme } = changeThemeStore();
 
+  const [paid, setPaid] = useState(props.paid);
+  const [requestSent, setRequestSent] = useState(false);
+
+  const changePaidState = async () => {
+    try
+    {
+      if (!requestSent) {
+        setRequestSent(true);
+        const result = await TransactionRepository.changePaidState(props.transactionId, !paid);
+        if (result.success) {
+          setPaid(!paid);
+        }
+      }
+    }
+    catch (error)
+    {
+      console.log(error);
+      Alert.alert("Não foi possível atualizar esta transação!")
+      return
+    }
+    finally
+    {
+      setRequestSent(false);
+    }
+  }
+
   return (
     <View className="flex flex-row items-center gap-6">
-      <View>
-        {props.paid ? (
+      <Pressable onPress={changePaidState}>
+        {paid ? (
           <Ionicons
             name="checkmark-done-outline"
             color={theme.colours.states.success}
@@ -33,7 +60,7 @@ export default function Transaction({ ...props }: TransactionProps) {
             size={28}
           />
         )}
-      </View>
+      </Pressable>
 
       <View className="flex flex-1 flex-row gap-1 flex-wrap">
         <Text className="h4 text-normal w-full">{props.expenseName} </Text>

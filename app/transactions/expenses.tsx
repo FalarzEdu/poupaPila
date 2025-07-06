@@ -1,14 +1,15 @@
 import { Text, View } from "react-native";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import MonthSlider from "@components/month_slider/MonthSlider";
 import Transaction from "@components/transaction/Transaction";
 import changeThemeStore from "@states/ColourTheme";
 import { convert } from "@helpers/CurrencyConversion";
 import {Ionicons} from "@expo/vector-icons";
-import {Link} from "expo-router";
+import {Link, router, useFocusEffect} from "expo-router";
 import TransactionRepository, { Transaction as TransactionType } from "@database/repository/TransactionRepository";
 import { getFullMonth } from "@helpers/DateHelper";
 import ScrollableFullScreen from "@containers/screen/ScrollableFullScreen";
+import BottomButton from "@components/BottomButton";
 
 export default function expenses() {
 
@@ -47,58 +48,62 @@ export default function expenses() {
     setSelectedMonth(selectedMonth - 1);
   }
 
-  useEffect(() => {
-    getAllTransactions();
-  }, [selectedMonth]);
+  useFocusEffect(
+    useCallback(() => {
+      getAllTransactions();
+    }, [selectedMonth])
+  );
 
   return (
-    <ScrollableFullScreen>
-      <View className="my-4">
-        <MonthSlider
-          month={ getFullMonth(selectedMonth) }
-          previousMonth={() => changeSelectedPeriod("previous")}
-          nextMonth={() => changeSelectedPeriod("next")}
-        />
-      </View>
+    <View className="h-full w-full bg-primary pb-16">
+      <ScrollableFullScreen>
 
-      <View className="flex flex-row gap-4 justify-center items-center w-full">
-        <Text className="text-states-danger h3">Despesas </Text>
-        <View className="flex flex-row gap-1 items-center justify-center">
-          <Text className="h4 text-alternative">R$ </Text>
-          <Text className="h3 text-normal">{convert(transactionsPricesSum)} </Text>
-          <Text className="small text-alternative uppercase">Total </Text>
+        <View className="my-4">
+          <MonthSlider
+            month={ getFullMonth(selectedMonth) }
+            previousMonth={() => changeSelectedPeriod("previous")}
+            nextMonth={() => changeSelectedPeriod("next")}
+          />
         </View>
-      </View>
 
-      <View className="mt-10 flex flex-col gap-6">
-        {transactions
-          .filter((transactions) => transactions.type != "revenue")
-          .map((transaction, index) => (
-            <React.Fragment key={index}>
-              <Transaction
-                key={index}
-                paid={transaction.paid}
-                value={transaction.price}
-                expenseName={transaction.description}
-                transactionId={transaction.id}
-                date={transaction.date}
-              />
-              {index < transactions.length && (
-                <View className="h-[1px] w-full bg-neutral-one"></View>
-              )}
-            </React.Fragment>
-          ))}
-      </View>
+        <View className="flex flex-row gap-4 justify-center items-center w-full">
+          <Text className="text-states-danger h3">Despesas </Text>
+          <View className="flex flex-row gap-1 items-center justify-center">
+            <Text className="h4 text-alternative">R$ </Text>
+            <Text className="h3 text-normal">{convert(transactionsPricesSum)} </Text>
+            <Text className="small text-alternative uppercase">Total </Text>
+          </View>
+        </View>
 
-      <Link className="fixed top-0 w-[64px]" href={"/transactions/newExpense"}>
-        <Ionicons
-          name="add-circle-outline"
-          color={theme.colours.states.success}
-          size={64}
-          className="w-fit"
-        />
-      </Link>
+        <View className="mt-10 flex flex-col gap-6">
+          {transactions
+            .filter((transactions) => transactions.type != "revenue")
+            .map((transaction, index) => (
+              <React.Fragment key={index}>
+                <Transaction
+                  key={index}
+                  paid={transaction.paid}
+                  value={transaction.price}
+                  expenseName={transaction.description}
+                  transactionId={transaction.id}
+                  date={transaction.date}
+                />
+                {index < transactions.length && (
+                  <View className="h-[1px] w-full bg-neutral-one"></View>
+                )}
+              </React.Fragment>
+            ))}
+        </View>
 
-    </ScrollableFullScreen>
+      </ScrollableFullScreen>
+
+      <BottomButton
+        onPress={() => router.push({pathname: "/transactions/newExpense"})}
+        borderColour="border-states-danger"
+        textColor="text-states-danger"
+        title="Adicionar Despesa"
+      />
+
+    </View>
   );
 }

@@ -14,11 +14,12 @@ export default function ScrollableFullScreen({ children }: ScrollableFullScreenP
     <ScrollView
       style={{
         backgroundColor: theme.background.primary,
-        height: 'auto',
+        display: 'flex',
+        flex: 1,
+        height: '100%',
         width: '100%',
         paddingLeft: 32,
         paddingRight: 32,
-        marginBottom: 16
       }}
     >
       {children}

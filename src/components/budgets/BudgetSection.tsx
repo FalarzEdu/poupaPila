@@ -1,10 +1,13 @@
 import {Text, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import BudgetsRepository from "@database/repository/BudgetsRepository";
-import {convert} from "@helpers/CurrencyConversion";
 import BudgetRow from "@components/budgets/BudgetRow";
 
-export default function BudgetSection(props: {}) {
+interface BudgetSectionProps {
+  refreshKey: number
+}
+
+export default function BudgetSection({ refreshKey }: BudgetSectionProps) {
 
   const [budgets, setBudgets] = useState<Array<{budgetValue: number, categoryExpense: number, categoryName: string}>>([]);
 
@@ -15,7 +18,7 @@ export default function BudgetSection(props: {}) {
 
   useEffect(() => {
     calcBudgets();
-  }, [])
+  }, [refreshKey]);
 
   if (!budgets) {
     return(
