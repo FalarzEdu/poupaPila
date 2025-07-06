@@ -7,6 +7,7 @@ import BottomButton from "@components/BottomButton";
 import TransactionRepository from "@database/repository/TransactionRepository";
 import CategoryRepository, {Category} from "@database/repository/CategoryRepository";
 import {router} from "expo-router";
+import {toDecimal} from "@helpers/CurrencyConversion";
 
 export default function newExpense() {
 
@@ -30,8 +31,7 @@ export default function newExpense() {
 
   const handleTransactionInsert = async () => {
     try {
-      const formattedPrice
-            = Number(price.replace("R$ ", "").replace(",", "."));
+      const formattedPrice = toDecimal(price)
       const result = await TransactionRepository.insert({
         description: description,
         type: 'expense',
@@ -46,7 +46,7 @@ export default function newExpense() {
         Alert.alert("Houve um erro ao adicionar esta despesa. Tente novamente.")
         return;
       }
-      router.replace("/transactions/expenses");
+      router.back();
     }
     catch (error) {
       console.error(error)

@@ -1,7 +1,7 @@
 import {Text, View} from "react-native";
-import {Link} from "expo-router";
+import {Link, useFocusEffect} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import changeThemeStore from "@states/ColourTheme";
 import {convert} from "@helpers/CurrencyConversion";
 import ScrollableFullScreen from "@containers/screen/ScrollableFullScreen";
@@ -19,9 +19,11 @@ export default function goals() {
     setAllGoals(result.data);
   }
 
-  useEffect(() => {
-    getAllGoals();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getAllGoals();
+    }, [])
+  );
 
   if (!allGoals) {
     return (

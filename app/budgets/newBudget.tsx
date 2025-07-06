@@ -7,10 +7,11 @@ import BottomButton from "@components/BottomButton";
 import BudgetsRepository from "@database/repository/BudgetsRepository";
 import {Router} from "expo-router/build/rsc/router/client";
 import {ExpoRouter, router} from "expo-router";
+import {toDecimal} from "@helpers/CurrencyConversion";
 
 export default function newBudget() {
 
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>("");
   const [category, setCategory] = useState<number>();
   const [allCategories, setAllCategories] = useState<Array<Category>>([]);
 
@@ -19,8 +20,7 @@ export default function newBudget() {
   }
 
   const handleCreation = () => {
-    const formattedPrice
-      = Number(value!.replace("R$ ", "").replace(",", "."));
+    const formattedPrice = toDecimal(value)
 
    try
    {

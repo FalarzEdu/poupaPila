@@ -1,9 +1,9 @@
 import { Text, View } from "react-native";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Transaction from "@components/transaction/Transaction";
 import MonthSlider from "@components/month_slider/MonthSlider";
 import { convert } from "@helpers/CurrencyConversion";
-import {Link} from "expo-router";
+import {Link, useFocusEffect} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
 import changeThemeStore from "@states/ColourTheme";
 import TransactionRepository, {Transaction as TransactionType} from "@database/repository/TransactionRepository";
@@ -47,9 +47,11 @@ export default function revenues() {
     setSelectedMonth(selectedMonth - 1);
   }
 
-  useEffect(() => {
-    getAllTransactions();
-  }, [selectedMonth]);
+  useFocusEffect(
+    useCallback(() => {
+      getAllTransactions();
+    }, [selectedMonth])
+  );
 
   return (
     <ScrollableFullScreen>

@@ -23,7 +23,7 @@ export default function GoalRow({ ...props }: GoalRowProps) {
     setGoalPercentage(
       convertToPercentage(props.goalValue, props.currentValue)
     );
-  }, []);
+  }, [props.currentValue]);
 
   if (goalPercentage < 0) {
     return (

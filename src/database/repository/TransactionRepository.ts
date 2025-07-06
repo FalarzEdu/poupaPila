@@ -132,6 +132,87 @@ export default class TransactionRepository {
       }
   }
 
+  public static async getAllRevenuesAndExpenses(): Promise<DatabaseResponse> {
+    try
+    {
+      const result = await db.getAllAsync(`
+        SELECT
+            (SELECT TOTAL(price) FROM transactions
+             WHERE type = 'revenue'
+               AND strftime('%m', date) = strftime('%m', date('now'))
+               AND strftime('%Y', date) = strftime('%Y', date('now'))
+            ) AS totalRevenues,
+            -- ##############
+            (SELECT TOTAL(price) FROM transactions
+             WHERE type = 'expense'
+               AND strftime('%m', date) = strftime('%m', date('now'))
+               AND strftime('%Y', date) = strftime('%Y', date('now'))
+            ) AS totalExpenses,
+            -- ##############
+            (
+                SELECT TOTAL(price) FROM transactions
+                WHERE type = 'revenue'
+                  AND date(date) BETWEEN date('now', 'start of month', '-1 month') AND date('now', 'start of month', '-1 day')
+            ) -
+            (
+                SELECT TOTAL(price) FROM transactions
+                WHERE type = 'expense'
+                  AND date(date) BETWEEN date('now', 'start of month', '-1 month') AND date('now', 'start of month', '-1 day')
+            ) AS lastMonthNetBalance,
+            -- ##############
+            (
+                SELECT TOTAL(price) FROM transactions
+                WHERE 
+                    type = 'revenue'
+                AND
+                    paid = true
+                AND date(date) BETWEEN date('now', 'start of month') AND date('now', 'start of month', '+1 month', '-1 day')
+            ) -
+            (
+                SELECT TOTAL(price) FROM transactions
+                WHERE 
+                    type = 'expense'
+                AND
+                    paid = true
+                AND 
+                    date(date) BETWEEN date('now', 'start of month') AND date('now', 'start of month', '+1 month', '-1 day')
+            ) AS thisMonthNetBalance
+    `)
+      return { success: true, data: result };
+    }
+    catch(error)
+    {
+      console.log(error)
+      return { success: false }
+    }
+  }
+
+  public static async changePaidState(id: number, changeTo: boolean): Promise<DatabaseResponse> {
+    const statement = await db.prepareAsync(`
+      UPDATE 
+        transactions
+      SET 
+        paid = $paid
+      WHERE 
+        id = $id
+    `)
+
+    try
+    {
+      const result = await statement.executeAsync(changeTo, id)
+      return { success: true };
+    }
+    catch(error)
+    {
+      console.log(error)
+      return { success: false }
+    }
+    finally
+    {
+      statement.finalizeAsync();
+    }
+  }
+
   public static test() {
     return db.getFirstSync(`
       SELECT strftime('%Y', date) FROM transactions

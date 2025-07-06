@@ -5,6 +5,7 @@ import React, {Suspense, useEffect, useState} from "react";
 import BottomButton from "@components/BottomButton";
 import { router } from "expo-router";
 import GoalsRepository from "@database/repository/GoalsRepository";
+import {toDecimal} from "@helpers/CurrencyConversion";
 
 export default function newGoal() {
 
@@ -13,11 +14,7 @@ export default function newGoal() {
   const [deadLine, setDeadLine] = useState<string>("");
 
   const handleCreation = async () => {
-    const formattedPrice
-      = Number(value!
-          .replace("R$ ", "")
-          .replace(".", "")
-          .replace(",", "."));
+    const formattedPrice = toDecimal(value)
 
     try
     {

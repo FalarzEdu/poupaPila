@@ -1,27 +1,37 @@
 import "../public/css/global.css";
 
-import {Text, View} from "react-native";
-import React, {Suspense, useEffect, useState} from "react";
+import { View } from "react-native";
+import React, {useCallback, useEffect, useState} from "react";
 
 import changeThemeStore from "@states/ColourTheme";
-import FixedScreen from "@containers/screen/FixedScreen";
 import MainDisplay from "@components/balance/MainDisplay";
 import { useFonts } from "expo-font";
 import SecondaryDisplay from "@components/balance/SecondaryDisplay";
 import CardDisplay from "@components/balance/CardDisplay/CardDisplay";
-import TransactionRepository from "@database/repository/TransactionRepository";
-import CustomDoughnutChart, {DoughnutLabelData, DoughnutSeries} from "@components/DoughnutChart";
-import {Link, Redirect} from "expo-router";
+import {Link, Redirect, useFocusEffect} from "expo-router";
 import BudgetSection from "@components/budgets/BudgetSection";
 import ScrollableFullScreen from "@containers/screen/ScrollableFullScreen";
 import GoalSection from "@components/goals/GoalSection";
+import CustomDoughnutChart from "@components/DoughnutChart";
+import TransactionRepository from "@database/repository/TransactionRepository";
 
 export default function home() {
   const { theme } = changeThemeStore();
 
   // AUTO REDIRECT FOR TESTS
-  // return <Redirect href="/budgets/budgets" />;
+  return <Redirect href="/transactions/expenses" />;
 
+  const [financeData, setFinanceData] = useState<{
+    totalExpenses: number,
+    totalRevenues: number,
+    lastMonthNetBalance: number,
+    thisMonthNetBalance: number,
+  }>({
+      totalExpenses: 0,
+      totalRevenues: 0,
+      lastMonthNetBalance: 0,
+    thisMonthNetBalance: 0
+  })
   const [fontsLoaded] = useFonts({
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins Bold.ttf"),
@@ -29,50 +39,18 @@ export default function home() {
     "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
   });
 
-  const [chartInfo, setChartInfo] = useState<Array<DoughnutSeries> | null>(null)
-  const [chartLabelData, setChartLabelData] = useState<Array<DoughnutLabelData>>([])
-
-  const loadChartInformation = async (): Promise<void> => {
-    const chartData = await TransactionRepository.expensesByCategory();
-
-    const chartSeries: Array<DoughnutSeries> = [];
-    const chartLabel: Array<DoughnutLabelData> = [];
-    for (const chart of chartData.data)
-    {
-      chartSeries.push({
-        value: chart.categoryPrice,
-        color: chart.colour,
-        label: {
-          text: formatDecimalToPercentage(chart.categoryPrice / chart.totalPrice) + "%",
-          fontWeight: "bolder",
-          fill: theme.background.primary,
-          fontSize: 16
-        }
-      });
-
-      chartLabel.push({
-        description: chart.description,
-        colour: chart.colour
-      });
-    }
-
-    setChartInfo(chartSeries);
-    setChartLabelData(chartLabel);
+  const getFinanceData = async () => {
+    const result = await TransactionRepository.getAllRevenuesAndExpenses();
+    setFinanceData(result.data[0]);
   }
+  const [refreshKey, setRefreshKey] = useState<number>(0);
 
-  const formatDecimalToPercentage = (value: number): string => {
-    return Math.trunc(value * 100).toString();
-  }
-
-  useEffect(() => {
-    loadChartInformation();
-  }, []);
-
-  if (!chartInfo || !chartLabelData) {
-    return (
-      <Suspense fallback={<div>Loading...</div>} />
-    )
-  }
+  useFocusEffect(
+    useCallback(() => {
+      getFinanceData();
+      setRefreshKey(prev => prev + 1); // Increment to signal refresh
+    }, [])
+  );
 
   return (
     <ScrollableFullScreen>
@@ -80,21 +58,21 @@ export default function home() {
         <View className="flex flex-row justify-between content-end">
           <SecondaryDisplay
             text="Inicial"
-            value={23.55}
+            value={financeData.lastMonthNetBalance > 0 ? financeData.lastMonthNetBalance : 0}
             icon="enter-outline"
             iconSize={14}
             iconColour={theme.colours.primary.fade}
           />
           <MainDisplay
             text="Saldo"
-            value={500.86}
+            value={financeData.thisMonthNetBalance + financeData.lastMonthNetBalance > 0 ? financeData.thisMonthNetBalance : 0}
             icon="wallet-outline"
             iconSize={18}
             iconColour={theme.colours.primary.fade}
           />
           <SecondaryDisplay
             text="Previsto"
-            value={731.41}
+            value={(financeData.totalRevenues - financeData.totalExpenses) + financeData.lastMonthNetBalance}
             dynamicValueColour={true}
             icon="exit-outline"
             iconSize={14}
@@ -107,7 +85,7 @@ export default function home() {
             <CardDisplay.WithLink
               text="Entrada"
               iconDirection="right"
-              value={6700}
+              value={financeData.totalRevenues}
               icon={"arrow-up-circle"}
               iconColour={theme.colours.states.success}
               iconSize={30}
@@ -118,7 +96,7 @@ export default function home() {
             <CardDisplay.WithLink
               text="Saída"
               iconDirection="left"
-              value={6442.14}
+              value={financeData.totalExpenses}
               icon={"arrow-down-circle"}
               iconColour={theme.colours.states.danger}
               iconSize={30}
@@ -130,15 +108,15 @@ export default function home() {
       </View>
 
       <View>
-        <CustomDoughnutChart title="Despesas por Categoria" labelData={chartLabelData} data={chartInfo!} />
+        <CustomDoughnutChart refreshKey={refreshKey} />
       </View>
 
       <Link href="/budgets/budgets" className="bg-secondary w-full px-4 py-4 mt-12 rounded-xl">
-        <BudgetSection />
+        <BudgetSection refreshKey={refreshKey} />
       </Link>
 
       <Link href="/goals/goals" className="bg-secondary w-full px-4 py-4 mb-4 mt-12 rounded-xl">
-        <GoalSection />
+        <GoalSection refreshKey={refreshKey} />
       </Link>
 
     </ScrollableFullScreen>

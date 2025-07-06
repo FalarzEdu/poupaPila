@@ -5,3 +5,10 @@ export function convert(value: number){
     maximumFractionDigits: 2,
   });
 }
+
+export function toDecimal(strValue: string): number {
+  return Number(strValue
+    .replace("R$ ", "")
+    .replace(".", "")
+    .replace(",", "."));
+}
