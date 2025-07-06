@@ -19,7 +19,7 @@ export default function home() {
   const { theme } = changeThemeStore();
 
   // AUTO REDIRECT FOR TESTS
-  return <Redirect href="/transactions/expenses" />;
+  // return <Redirect href="/categories/newCategory" />;
 
   const [financeData, setFinanceData] = useState<{
     totalExpenses: number,
