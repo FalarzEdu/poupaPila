@@ -24,7 +24,7 @@ export default function GoalSection({ refreshKey }: GoalSectionProps) {
   if (goals.length === 0) {
     return(
       <View className="w-full">
-        <Text className="font-regular-poppins text-alternative w-full text-center uppercase">Orçamentos</Text>
+        <Text className="font-regular-poppins text-alternative w-full text-center uppercase">Objetivos</Text>
         <Text className="font-regular-poppins text-muted h-full text-center mt-2">Nada a mostrar.</Text>
       </View>
     )

@@ -65,7 +65,7 @@ export default function home() {
           />
           <MainDisplay
             text="Saldo"
-            value={financeData.thisMonthNetBalance + financeData.lastMonthNetBalance > 0 ? financeData.thisMonthNetBalance : 0}
+            value={financeData.thisMonthNetBalance + financeData.lastMonthNetBalance}
             icon="wallet-outline"
             iconSize={18}
             iconColour={theme.colours.primary.fade}

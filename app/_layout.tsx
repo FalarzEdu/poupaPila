@@ -70,6 +70,20 @@ export default function _layout() {
         }}
       />
 
+      <Stack.Screen
+        name="goals/newGoal"
+        options={{
+          title: "Novo Objetivo",
+        }}
+      />
+
+      <Stack.Screen
+        name="budgets/newBudget"
+        options={{
+          title: "Novo Orçamento",
+        }}
+      />
+
     </Stack>
   );
 }

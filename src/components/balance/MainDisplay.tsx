@@ -36,7 +36,7 @@ export default function MainDisplay({
 
       <View className="flex flex-row justify-center items-center mb-1 pb-0">
         <Text className="m-0 p-0 h4 text-alternative">R$ </Text>
-        <Text className="m-0 p-0 h2 h-full text-normal">{convert(value)}</Text>
+        <Text className={`m-0 p-0 h2 h-full ${value > 0 ? 'text-normal' : 'text-states-danger'}`}>{convert(value)}</Text>
       </View>
 
       <Underline />

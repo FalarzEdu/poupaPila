@@ -173,16 +173,18 @@ As _sprints_ foram organizadas de forma que as funções nucleares da aplicaçã
 
 **Tarefas**
 
-- [ ] Implementar notificação parabenizando o usuário ao cumprir uma meta.
-- [ ] Implementar notificação premiando o usuário por manter-se dentro de um ou mais orçamentos.
-- [ ] Implementar notificação incentivadora caso o usuário termine um pagamento parcelado com várias parcelas.
+- [ ] ~~Implementar notificação parabenizando o usuário ao cumprir uma meta~~.
+- [ ] ~~Implementar notificação premiando o usuário por manter-se dentro de um ou mais orçamentos~~.
+- [ ] ~~Implementar notificação incentivadora caso o usuário termine um pagamento parcelado com várias parcelas~~.
 
 **_Story_**: Como usuário, quero receber dicas sobre possíveis cortes em categorias que possuem gastos muitos mais elevados que outras, além de ser notificado sobre aumentos de gastos em relação a meses anteriores.
 
 **Tarefas**
 
-- [ ] Implementar notificação caso o gasto com uma categoria (exceto as categorias "contas fixas" e "saúde") esteja muito maior em comparação a outras (caso a categoria assuma sozinha mais de 1/3 do total).
-- [ ] Implementar notificação caso uma categoria exceda a média dos últimos 3 meses em mais de 25%.
+- [ ] ~~Implementar notificação caso o gasto com uma categoria (exceto as categorias "contas fixas" e "saúde") esteja muito maior em comparação a outras (caso a categoria assuma sozinha mais de 1/3 do total)~~.
+- [ ] ~~Implementar notificação caso uma categoria exceda a média dos últimos 3 meses em mais de 25%~~.
+
+### *** As tarefas da terceira sprint não foram realizas pelo esgotamento do tempo limite.
 
 ## Atualizações desde o Último Checkpoint
 

@@ -60,7 +60,7 @@ export default function goals() {
       </ScrollableFullScreen>
 
       <BottomButton
-        onPress={() => router.push({pathname: "/transactions/newRevenue"})}
+        onPress={() => router.push({pathname: "/goals/newGoal"})}
         borderColour="border-states-success"
         textColor="text-states-success"
         title="Adicionar Receita"

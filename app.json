@@ -2,7 +2,7 @@
   "expo": {
     "name": "PoupaPila",
     "slug": "PoupaPila",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -32,6 +32,15 @@
     "plugins": [
       "expo-sqlite",
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4883ca87-9f3e-4c54-9fe8-b7b4f837e685"
+      }
+    },
+    "owner": "falarz-edu"
   }
 }
